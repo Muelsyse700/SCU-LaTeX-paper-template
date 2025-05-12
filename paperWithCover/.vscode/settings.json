@@ -1,0 +1,110 @@
+{
+    // 当设置为"never"时，禁用了保存LaTeX文档时自动编译的功能。
+    "latex-workshop.latex.autoBuild.run": "never",
+    
+    // 启用VS Code编辑器中的LaTeX文件右键菜单。
+    "latex-workshop.showContextMenu": true,
+    
+    // 启用LaTeX Workshop的智能感知功能，包括代码自动完成、参数信息等。
+    "latex-workshop.intellisense.package.enabled": true,
+    
+    // 禁用错误信息在编辑器中的显示。
+    "latex-workshop.message.error.show": false,
+    
+    // 禁用警告信息在编辑器中的显示。
+    "latex-workshop.message.warning.show": false,
+    
+    // 定义了LaTeX编译工具的配置，包括工具名称、命令和参数。
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex", // 工具名称：xelatex
+            "command": "xelatex", // 执行的命令
+            "args": [ // 命令参数
+            "-synctex=1", // 启用同步TeX，方便在PDF和源文件之间跳转
+            "-interaction=nonstopmode", // 设置为非停止模式，编译时不中断
+            "-file-line-error", // 显示错误的文件名和行号
+            "%DOCFILE%" // 代表当前文档的路径
+            ]
+        },
+        {
+            "name": "pdflatex", // 工具名称：pdflatex
+            "command": "pdflatex",
+            "args": [ // 命令参数，与xelatex类似
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "latexmk", // 工具名称：latexmk
+            "command": "latexmk",
+            "args": [ // 命令参数，latexmk特有的参数
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+            "-pdf", // 生成PDF输出
+            "-outdir=%OUTDIR%", // 输出目录，%OUTDIR%为占位符
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "bibtex", // 工具名称：bibtex
+            "command": "bibtex",
+            "args": [ // 命令参数
+            "%DOCFILE%" // 代表当前文档的路径，用于处理参考文献
+            ]
+        }
+    ],
+    
+    // 定义了LaTeX编译流程的名称和使用的编译工具序列。
+    "latex-workshop.latex.recipes": [
+        {
+        "name": "XeLaTeX", // 编译流程名称：单独使用XeLaTeX
+        "tools": ["xelatex"] // 使用的工具
+        },
+        {
+        "name": "PDFLaTeX", // 编译流程名称：单独使用PDFLaTeX
+        "tools": ["pdflatex"]
+        },
+        {
+        "name": "BibTeX", // 编译流程名称：单独使用BibTeX
+        "tools": ["bibtex"]
+        },
+        {
+        "name": "LaTeXmk", // 编译流程名称：使用latexmk
+        "tools": ["latexmk"]
+        },
+        {
+        "name": "xelatex -> bibtex -> xelatex*2", // 编译流程名称：xelatex + bibtex + 两次xelatex
+        "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+        },
+        {
+        "name": "pdflatex -> bibtex -> pdflatex*2", // 编译流程名称：pdflatex + bibtex + 两次pdflatex
+        "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+        }
+    ],
+    
+    // 定义了编译过程中生成的临时文件类型，这些文件在清理时会被删除。
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot",
+        "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.gls",
+        "*.glo", "*.ist", "*.fls", "*.log", "*.fdb_latexmk"
+      // 这些文件类型包含了LaTeX编译过程中生成的各种辅助文件
+    ],
+
+    // 设置在编译失败时自动清理临时文件。
+    "latex-workshop.latex.autoClean.run": "onFailed",
+    
+    // 设置默认使用上次使用的编译流程。
+    "latex-workshop.latex.recipe.default": "lastUsed",
+    
+    // 设置PDF查看器中同步TeX的快捷键为双击。
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+
+    
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.guides.bracketPairs": "active",
+    "python.analysis.autoImportCompletions": false,
+    "editor.wordWrap": "off",
+}

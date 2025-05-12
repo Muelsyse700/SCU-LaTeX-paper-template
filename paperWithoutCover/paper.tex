@@ -1,0 +1,50 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{array}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm} % 设定页边距
+
+% !编译配方：xelatex
+% !请务必选择该配方，如无引用，请勿使用bibtex编译
+
+% !声明论文主要信息
+\newcommand{\LessonName}{高级\LaTeX 应用} % 课程名称
+\newcommand{\PaperType}{课程论文} % 论文类型
+\newcommand{\MainTitle}{基于\LaTeX 的小型论文模板设计} % 主标题
+\newcommand{\SubTitle}{——不知道起什么副标题} % 副标题（请手动写入破折号）
+\newcommand{\CollegeName}{材料科学与工程学院} % 学院
+\newcommand{\AuthorName}{君の名前} % 姓名
+\newcommand{\ID}{1145141919810} % 学号
+\newcommand{\Date}{\today} % 如需固定写死，可替换为yyyy-mm-dd
+
+% 设置论文头部基本信息
+\makeatletter
+\renewcommand{\@maketitle}{
+	\vspace*{-1cm} % 减少标题上方间距
+	{\centering \heiti \Huge \MainTitle \par} % 主标题
+	\vspace{0.1cm} % 主副标题间距
+	{\centering \heiti \Large \SubTitle \par} % 副标题（如果有）
+	\vspace{0.3cm} % 标题与作者信息间距
+	{\centering \fangsong \large \CollegeName \hspace{0.2cm} \AuthorName \hspace{0.2cm} \ID \par}
+	\vspace{0.9cm} % 作者信息与正文间距
+}
+\makeatother
+
+
+\begin{document}
+
+% --------标题与基本信息--------
+\maketitle % 生成标题
+
+% --------正文--------
+这里是前言，不写就留空
+
+\section{第一节}
+这里是正文第一节
+
+% --------结语--------
+\section*{结语}
+这里是结语，不要就全都注释掉
+
+\end{document}
