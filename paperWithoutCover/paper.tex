@@ -1,11 +1,18 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage[numbers, sort&compress]{natbib}
 \usepackage[UTF8]{ctex}
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{array}
+\usepackage{fancyhdr}
 \geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm} % 设定页边距
+\CTEXsetup[format={\Large\bfseries}]{section}
+\setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi] % 字体设置
+\setmainfont{Times New Roman}
+%\setCJKmainfont{Source Han Serif SC}[BoldFont=Source Han Sans SC,ItalicFont=KaiTi] % 字体设置思源体
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} % 自定义引用上标命令
 
-% !编译配方：xelatex
+% !编译配方：xelatex*2
 % !请务必选择该配方，如无引用，请勿使用bibtex编译
 
 % !声明论文主要信息
@@ -45,6 +52,12 @@
 
 % --------结语--------
 \section*{结语}
-这里是结语，不要就全都注释掉
+这里是结语，不要就全都注释掉\upcite{m1}
+
+% --------参考文献--------
+\renewcommand{\refname}{参考文献}
+\begin{thebibliography}{99}
+	\bibitem{m1} 参考文献1
+\end{thebibliography}
 
 \end{document}

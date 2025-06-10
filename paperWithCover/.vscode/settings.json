@@ -64,6 +64,10 @@
         "tools": ["xelatex"] // 使用的工具
         },
         {
+            "name": "XeLaTeX*2", // 编译流程名称：单独使用XeLaTeX
+            "tools": ["xelatex","xelatex"] // 使用的工具
+        },
+        {
         "name": "PDFLaTeX", // 编译流程名称：单独使用PDFLaTeX
         "tools": ["pdflatex"]
         },

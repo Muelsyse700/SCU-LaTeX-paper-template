@@ -1,31 +1,39 @@
-\documentclass[a4paper,12pt]{article}
-\usepackage[UTF8]{ctex}
-\usepackage[backend=bibtex]{biblatex}
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage[numbers, sort&compress]{natbib}
+\usepackage{tocloft}
 \usepackage{graphicx}
 \usepackage{abstract}
 \usepackage{geometry}
 \usepackage{array}
 \usepackage{datetime2}
+\usepackage{fancyhdr}
 \usepackage{ulem}  % 提供 \uline
 \geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm} % 设定页边距
+\CTEXsetup[format={\Large\bfseries}]{section}
+%\setCJKmainfont{Source Han Serif SC}[BoldFont=Source Han Sans SC,ItalicFont=KaiTi] % 字体设置
+\setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
 \ctexset{abstractname = {}} % 取消默认摘要标题
 \ctexset{contentsname = {}} % 取消默认目录标题
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\newcommand{\fixuline}[2][6cm]{\uline{\makebox[#1][c]{#2}}} % 自定义命令：固定长度下划线并居中显示内容
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} % 自定义引用上标命令
 
-% !编译配方：xelatex -> bibtex -> xelatex*2
-% !请务必选择该配方，否则交叉编译目录和引用文献需要编译两次
 
-% 自定义命令：固定长度下划线并居中显示内容
-\newcommand{\fixuline}[2][6cm]{\uline{\makebox[#1][c]{#2}}}
+% !编译配方：xelatex*2
+% !请务必选择该配方，若无该配方，请手动编译两次xelatex或自行定义该编译配方
+
 
 % !声明论文主要信息
-\newcommand{\LessonName}{\LaTeX 在论文排版中的应用}
-\newcommand{\PaperType}{随便什么课程的论文}
-\newcommand{\MainTitle}{这是第一个 \LaTeX 模板}
-\newcommand{\SubTitle}{——不知道叫什么副标题}
-\newcommand{\CollegeName}{材料科学与工程学院}
-\newcommand{\AuthorName}{\LaTeX 领域大神}
+\newcommand{\LessonName}{你的课程名称}
+\newcommand{\PaperType}{你的论文类型}
+\newcommand{\MainTitle}{这里是大标题}
+\newcommand{\SubTitle}{——这里是副标题}
+\newcommand{\CollegeName}{这里是你的学院}
+\newcommand{\AuthorName}{君の名前}
 \newcommand{\ID}{1145141919810}
 \newcommand{\Date}{\today} % 如需固定写死，可替换为yyyy-mm-dd
+\newcommand{\Head}{这里是你的页眉}
+
 
 \begin{document}
 
@@ -80,65 +88,70 @@
 
 % --------摘要--------
 \newpage
-\pagenumbering{Roman} % 开始罗马数字页码
+%\pagenumbering{Roman} % 开始罗马数字页码
 \begin{abstract}
-    \thispagestyle{plain}
+    \thispagestyle{empty}
     \begin{center}
         {\bfseries\Large 摘\hspace{2em}要} \\[1em]
     \end{center}
+	这里是摘要
 
-    \begin{description}
-        \item[目的] 这里是目的
-        \item[方法] 这里是方法
-        \item[结果] 这里是结果
-        \item[结论] 这里是结论
-    \end{description}
-    
-    \vspace{0.5em}
-    {\noindent\bfseries 关键词：} 关键词1；关键词2；关键词3
+	\vspace{2em}
+
+    {\noindent\bfseries 关键词：} \textit{关键词1；关键词2}
 \end{abstract}
 
 % --------目录--------
 \newpage
-\thispagestyle{empty}
 \begin{center}
 	{\bfseries\Large 目\hspace{2em}录}
 	\tableofcontents % 生成目录
-\end{center} 
-\pagenumbering{arabic} % 设置页码格式是阿拉伯数字
-\setcounter{page}{0}
+	\thispagestyle{empty}
+\end{center}
 
 % --------引言--------
 \newpage
+\cleardoublepage
+\fancypagestyle{myheader}{
+	\fancyhf{}                                  % 清除默认设置
+	\fancyhead[C]{\Head} % 页眉左侧内容（可自定义）
+	\fancyhead[R]{第\thepage 页}                % 页眉右侧页码（可自定义）
+}
+\pagestyle{myheader}  % 启用 fancy 页眉
+\renewcommand{\headrulewidth}{0.4pt} % 页眉横线宽度
+\pagenumbering{arabic} % 设置页码格式是阿拉伯数字
+\setcounter{page}{1}
+
+
 \section*{引言} % 星号表示不编号
 \addcontentsline{toc}{section}{引言} % 手动添加目录项
 这里是引言
 
-% --------正文--------
-\section{概述1}
-这里是概述1
-\subsection{概述1的概述1}
-这里是概述1的概述1
-\subsection{概述1的概述2}
-这里是概述1的概述2
 
-\section{概述2}
-这里是概述2
-\subsection{概述2的概述1}
-这里是概述2的概述1
+% --------正文--------
+\section{第一节}
+这里是第一节\upcite{m1}
+
+
+\section{第二节}
+这里是\textbf{第二节}\upcite{m1,m2}
+
+
+\section{第三节}
+这里是\textit{第三节}\upcite{m1,x1,m2}
 
 % --------结语--------
 \section*{结语} % 带空格的标题
 \addcontentsline{toc}{section}{结语} % 目录项
+这里是结语
 
 % --------参考文献--------
-\section*{参考文献}
+\renewcommand{\refname}{参考文献}
 \addcontentsline{toc}{section}{参考文献}
-\begin{enumerate}
-	\item 参考文献1
-	\item 参考文献2
-	\item 参考文献3
-\end{enumerate}
-
+\begin{thebibliography}{99}  
+	\bibitem{m1} 参考文献1
+	\bibitem{x1} 参考文献2
+	\bibitem{m2} 参考文献3
+\end{thebibliography}
 
 \end{document}
